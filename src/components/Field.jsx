@@ -5,7 +5,9 @@ import { CaretDownIcon, CheckIcon, WarningCircleIcon } from '@phosphor-icons/rea
 const control =
   'w-full rounded-xl border bg-bg px-4 text-base text-ink outline-none transition-[border-color,box-shadow] duration-200 focus:border-accent focus:ring-4 focus:ring-accent/20'
 
-export default function Field({ field, value, error, attempt, onChange, inputRef }) {
+// `copyValue` is the current value of the field named in `field.copyFrom`, used by the
+// "Same as phone" shortcut.
+export default function Field({ field, value, error, attempt, onChange, inputRef, copyValue }) {
   const [scope, animate] = useAnimate()
   const id = `field-${field.name}`
   const helpId = `${id}-help`
@@ -146,12 +148,16 @@ export default function Field({ field, value, error, attempt, onChange, inputRef
       />
     )
   } else {
+    const isHandle = field.type === 'instagram'
     input = (
       <input
         {...shared}
-        type={field.type}
-        autoComplete={field.autoComplete}
-        inputMode={field.type === 'tel' ? 'tel' : undefined}
+        type={field.type === 'email' || field.type === 'tel' ? field.type : 'text'}
+        autoComplete={field.autoComplete ?? (isHandle ? 'off' : undefined)}
+        inputMode={{ tel: 'tel', number: 'numeric' }[field.type]}
+        maxLength={field.type === 'number' ? 3 : undefined}
+        autoCapitalize={isHandle ? 'none' : undefined}
+        spellCheck={isHandle ? false : undefined}
         value={value}
         onChange={(e) => onChange(field.name, e.target.value)}
         className={`${control} ${border} h-12`}
@@ -162,10 +168,22 @@ export default function Field({ field, value, error, attempt, onChange, inputRef
   return (
     <div ref={scope} className={`flex flex-col gap-2 ${field.span === 'full' ? 'md:col-span-2' : ''}`}>
       {field.type !== 'checkbox' && field.type !== 'radio' && (
-        <label htmlFor={id} className="flex items-baseline justify-between gap-3 text-sm font-medium">
-          {field.label}
-          {!required && <span className="text-xs font-normal text-muted">Optional</span>}
-        </label>
+        <div className="flex items-baseline justify-between gap-3">
+          <label htmlFor={id} className="text-sm font-medium">
+            {field.label}
+          </label>
+          {field.copyFrom && copyValue?.trim() && value !== copyValue ? (
+            <button
+              type="button"
+              onClick={() => onChange(field.name, copyValue)}
+              className="rounded text-xs font-medium text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              {field.copyLabel}
+            </button>
+          ) : (
+            !required && <span className="text-xs text-muted">Optional</span>
+          )}
+        </div>
       )}
       {input}
       {field.helper && !error && (

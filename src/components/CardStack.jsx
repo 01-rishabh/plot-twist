@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 
-// Fanned out and cascaded so each card's top edge (with its word) and a strip of its photo stay visible.
+// Fanned out and cascaded so a strip of every photo stays visible.
 const layout = [
   { x: -108, y: -52, rotate: -8 },
   { x: 0, y: 0, rotate: -1 },
@@ -8,7 +8,7 @@ const layout = [
 ]
 
 const ease = [0.16, 1, 0.3, 1]
-const face = 'absolute inset-0 flex flex-col overflow-hidden rounded-3xl p-5'
+const face = 'absolute inset-0 overflow-hidden rounded-3xl'
 
 // Three photo cards are dealt onto the table; the last one is face down and flips over.
 // Hovering a card brings it to the front so its whole photo shows.
@@ -17,13 +17,13 @@ export default function CardStack({ cards }) {
   return (
     <div className="relative mx-auto grid h-[15.5rem] w-full max-w-md grid-cols-1 grid-rows-1 place-items-center md:h-[28rem]" aria-hidden>
       <div className="relative h-[28rem] w-[28rem] shrink-0 scale-[0.55] md:scale-[0.8] lg:scale-100">
-        {cards.map(({ word, image, position }, i) => {
+        {cards.map(({ image, position }, i) => {
           const { x, y, rotate } = layout[i]
           const isTwist = i === cards.length - 1
 
           return (
             <motion.div
-              key={word}
+              key={image}
               className="absolute inset-0 m-auto h-72 w-52"
               style={{ zIndex: i }}
               initial={{ opacity: 0, x: 0, y: 140, rotate: 0 }}
@@ -54,11 +54,6 @@ export default function CardStack({ cards }) {
                     className="absolute inset-0 size-full object-cover"
                     style={{ objectPosition: position }}
                   />
-                  {/* Dark fade behind the word so it reads on any photo, in both themes. */}
-                  <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-zinc-950/70 to-transparent" />
-                  <span className="relative font-display text-3xl font-bold leading-none tracking-tight text-zinc-50">
-                    {word}
-                  </span>
                 </div>
 
                 {isTwist && (

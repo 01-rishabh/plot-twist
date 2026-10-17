@@ -144,6 +144,7 @@ export default function Register() {
                       error={errors[field.name]}
                       attempt={attempt}
                       onChange={update}
+                      copyValue={field.copyFrom && values[field.copyFrom]}
                       inputRef={(el) => (inputRefs.current[field.name] = el)}
                     />
                   ))}

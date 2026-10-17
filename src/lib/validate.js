@@ -1,4 +1,14 @@
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+const INSTAGRAM = /^[A-Za-z0-9._]{1,30}$/
+
+// Accepts "name", "@name" or a profile link and returns just "name".
+export function instagramHandle(text) {
+  return text
+    .trim()
+    .replace(/^(https?:\/\/)?(www\.)?instagram\.com\//i, '')
+    .replace(/[/?#].*$/, '')
+    .replace(/^@/, '')
+}
 
 export function validate(fields, values) {
   const errors = {}
@@ -25,6 +35,15 @@ export function validate(fields, values) {
         errors[field.name] = 'That phone number does not look right.'
       }
     }
+    if (field.type === 'number') {
+      const n = Number(text)
+      if (!/^\d+$/.test(text) || n < (field.min ?? 0) || n > (field.max ?? Infinity)) {
+        errors[field.name] = field.invalidMessage ?? 'Please enter a number.'
+      }
+    }
+    if (field.type === 'instagram' && !INSTAGRAM.test(instagramHandle(text))) {
+      errors[field.name] = 'That Instagram handle does not look right.'
+    }
   }
   return errors
 }
@@ -35,7 +54,14 @@ export function toRecord(fields, values) {
   for (const field of fields) {
     const header = field.sheetLabel ?? field.label
     const value = values[field.name]
-    record[header] = field.type === 'checkbox' ? (value ? 'Yes' : 'No') : (value ?? '').trim()
+    if (field.type === 'checkbox') {
+      record[header] = value ? 'Yes' : 'No'
+    } else if (field.type === 'instagram') {
+      const handle = instagramHandle(value ?? '')
+      record[header] = handle ? `@${handle}` : ''
+    } else {
+      record[header] = (value ?? '').trim()
+    }
   }
   return record
 }

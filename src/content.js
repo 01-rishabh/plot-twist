@@ -14,12 +14,12 @@ export const site = {
   hero: {
     sub: 'Something new is coming. Leave your details and you hear about it before anyone else.',
   },
-  // Hero cards, back to front. The last card is face down at first and flips over.
+  // Hero photo cards, back to front. The last card is face down at first and flips over.
   // `position` sets which part of the photo stays visible when it is cropped to the card.
   cards: [
-    { word: 'Setup.', image: hostPortrait, position: '50% 30%' },
-    { word: 'Tension.', image: campsiteSunset, position: '50% 45%' },
-    { word: 'Twist.', image: groupTrip, position: '50% 50%' },
+    { image: hostPortrait, position: '50% 30%' },
+    { image: campsiteSunset, position: '50% 45%' },
+    { image: groupTrip, position: '50% 50%' },
   ],
   manifesto:
     'Every good story turns at a moment nobody saw coming. We are building one of those moments, and we would like you there when it happens.',
@@ -54,17 +54,42 @@ export const fields = [
   },
   {
     name: 'phone',
-    label: 'Phone',
+    label: 'Phone number',
     type: 'tel',
     autoComplete: 'tel',
     requiredMessage: 'Please enter your phone number.',
     helper: 'Include your country code, for example +91.',
   },
   {
-    name: 'city',
-    label: 'City',
+    name: 'whatsapp',
+    label: 'WhatsApp number',
+    type: 'tel',
+    copyFrom: 'phone',
+    copyLabel: 'Same as phone',
+    requiredMessage: 'Please enter your WhatsApp number.',
+  },
+  {
+    name: 'age',
+    label: 'Age',
+    type: 'number',
+    min: 1,
+    max: 120,
+    requiredMessage: 'Please enter your age.',
+    invalidMessage: 'Please enter your age in years.',
+  },
+  {
+    name: 'instagram',
+    label: 'Instagram handle',
+    type: 'instagram',
+    helper: 'For example @yourname',
+  },
+  {
+    name: 'travellingFrom',
+    label: 'Where are you travelling from?',
     type: 'text',
+    span: 'full',
     autoComplete: 'address-level2',
+    requiredMessage: 'Please tell us where you are travelling from.',
   },
   {
     name: 'drink',
