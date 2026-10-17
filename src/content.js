@@ -82,6 +82,7 @@ export const fields = [
     label: 'Instagram handle',
     type: 'instagram',
     helper: 'For example @yourname',
+    requiredMessage: 'Please enter your Instagram handle.',
   },
   {
     name: 'travellingFrom',
@@ -105,6 +106,7 @@ export const fields = [
     type: 'select',
     span: 'full',
     options: ['Instagram', 'WhatsApp', 'A friend', 'Google search', 'Other'],
+    requiredMessage: 'Please tell us how you heard about us.',
   },
   {
     name: 'message',
