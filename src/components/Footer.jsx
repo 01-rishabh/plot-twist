@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-10 text-sm text-muted md:px-8">
         <p>
-          &copy; {new Date().getFullYear()} {site.title}
+          &copy; {new Date().getFullYear()} {site.fullTitle}
         </p>
         <a href="#top" className="inline-flex items-center gap-1.5 transition-colors hover:text-ink">
           Back to top

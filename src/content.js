@@ -4,6 +4,8 @@
 
 export const site = {
   title: 'Plot Twist',
+  brand: 'Shringaarika',
+  fullTitle: 'Plot Twist by Shringaarika',
   cta: 'Save my spot',
   hero: {
     sub: 'Something new is coming. Leave your details and you hear about it before anyone else.',

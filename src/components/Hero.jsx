@@ -42,17 +42,25 @@ export default function Hero() {
     <section id="top" className="relative flex min-h-[100dvh] items-end overflow-hidden pt-24 pb-14 md:pb-20">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-end gap-6 px-4 md:grid-cols-12 md:gap-12 md:px-8">
         <div className="md:col-span-7">
-          <h1
-            aria-label={site.title}
-            className="font-display text-[clamp(4.5rem,15vw,11.5rem)] font-extrabold leading-[0.88] tracking-[-0.045em]"
-          >
+          <h1 aria-label={site.fullTitle} className="font-display">
             <span aria-hidden>
-              <KineticWord word={first} startIndex={0} />
-              {second && (
-                <span className="text-accent">
-                  <KineticWord word={second} startIndex={first.length} twist />
-                </span>
-              )}
+              <span className="block text-[clamp(4.5rem,15vw,11.5rem)] font-extrabold leading-[0.88] tracking-[-0.045em]">
+                <KineticWord word={first} startIndex={0} />
+                {second && (
+                  <span className="text-accent">
+                    <KineticWord word={second} startIndex={first.length} twist />
+                  </span>
+                )}
+              </span>
+              <motion.span
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.65, duration: 0.7, ease }}
+                className="mt-3 block text-2xl font-semibold tracking-tight md:mt-5 md:text-4xl"
+              >
+                <span className="font-normal text-muted">by </span>
+                {site.brand}
+              </motion.span>
             </span>
           </h1>
 
@@ -60,7 +68,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.75, duration: 0.7, ease }}
-            className="mt-8 max-w-[34ch] text-lg leading-relaxed text-muted md:text-xl"
+            className="mt-6 max-w-[34ch] text-lg leading-relaxed text-muted md:mt-8 md:text-xl"
           >
             {site.hero.sub}
           </motion.p>
@@ -69,7 +77,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.7, ease }}
-            className="mt-10"
+            className="mt-8 md:mt-10"
           >
             <CtaLink />
           </motion.div>

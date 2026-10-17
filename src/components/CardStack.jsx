@@ -15,8 +15,8 @@ const card = 'absolute inset-0 flex flex-col justify-between rounded-3xl p-5'
 // The stage has a fixed size and is scaled down on phones, centred in a shorter box.
 export default function CardStack({ words }) {
   return (
-    <div className="relative mx-auto grid h-[17rem] w-full max-w-md grid-cols-1 grid-rows-1 place-items-center md:h-[28rem]" aria-hidden>
-      <div className="relative h-[28rem] w-[26rem] shrink-0 scale-[0.6] md:scale-100">
+    <div className="relative mx-auto grid h-[15.5rem] w-full max-w-md grid-cols-1 grid-rows-1 place-items-center md:h-[28rem]" aria-hidden>
+      <div className="relative h-[28rem] w-[26rem] shrink-0 scale-[0.55] md:scale-100">
         {words.map((word, i) => {
           const { x, y, rotate, Icon } = layout[i]
           const isTwist = i === words.length - 1
