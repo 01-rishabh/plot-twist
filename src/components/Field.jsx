@@ -62,6 +62,55 @@ export default function Field({ field, value, error, attempt, onChange, inputRef
         <span className="text-base leading-snug">{field.label}</span>
       </label>
     )
+  } else if (field.type === 'radio') {
+    input = (
+      <fieldset aria-describedby={describedBy} className="min-w-0">
+        <legend className="mb-2 text-sm font-medium">{field.label}</legend>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-3">
+          {field.options.map((option, i) => {
+            const checked = value === option
+            return (
+              <label
+                key={option}
+                className={`flex h-12 cursor-pointer items-center gap-3 rounded-xl border bg-bg px-4 transition-[border-color,background-color,box-shadow] duration-200 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-accent/30 ${
+                  checked ? 'border-accent bg-accent/10' : border
+                }`}
+              >
+                <input
+                  type="radio"
+                  name={field.name}
+                  value={option}
+                  checked={checked}
+                  onChange={() => onChange(field.name, option)}
+                  ref={i === 0 ? inputRef : undefined}
+                  aria-invalid={Boolean(error)}
+                  required={required}
+                  className="sr-only"
+                />
+                <span
+                  className={`grid size-5 shrink-0 place-items-center rounded-full border-2 transition-colors duration-200 ${
+                    checked ? 'border-accent' : 'border-line'
+                  }`}
+                >
+                  <AnimatePresence>
+                    {checked && (
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        transition={{ type: 'spring', stiffness: 500, damping: 24 }}
+                        className="size-2.5 rounded-full bg-accent"
+                      />
+                    )}
+                  </AnimatePresence>
+                </span>
+                <span className="text-base">{option}</span>
+              </label>
+            )
+          })}
+        </div>
+      </fieldset>
+    )
   } else if (field.type === 'select') {
     input = (
       <div className="relative">
@@ -112,7 +161,7 @@ export default function Field({ field, value, error, attempt, onChange, inputRef
 
   return (
     <div ref={scope} className={`flex flex-col gap-2 ${field.span === 'full' ? 'md:col-span-2' : ''}`}>
-      {field.type !== 'checkbox' && (
+      {field.type !== 'checkbox' && field.type !== 'radio' && (
         <label htmlFor={id} className="flex items-baseline justify-between gap-3 text-sm font-medium">
           {field.label}
           {!required && <span className="text-xs font-normal text-muted">Optional</span>}

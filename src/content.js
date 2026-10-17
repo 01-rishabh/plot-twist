@@ -57,6 +57,14 @@ export const fields = [
     autoComplete: 'address-level2',
   },
   {
+    name: 'drink',
+    label: 'Drink preference',
+    type: 'radio',
+    span: 'full',
+    options: ['Alcoholic', 'Non-alcoholic'],
+    requiredMessage: 'Please choose a drink preference.',
+  },
+  {
     name: 'source',
     label: 'How did you hear about us?',
     type: 'select',
