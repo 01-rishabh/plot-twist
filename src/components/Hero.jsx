@@ -84,7 +84,7 @@ export default function Hero() {
         </div>
 
         <div className="order-first md:order-none md:col-span-5">
-          <CardStack words={site.cards} />
+          <CardStack cards={site.cards} />
         </div>
       </div>
     </section>

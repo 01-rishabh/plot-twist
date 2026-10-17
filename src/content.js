@@ -2,6 +2,10 @@
 // Each field's `label` becomes a column header in the Google Sheet. New fields add
 // new columns automatically; renaming a label starts a new column.
 
+import hostPortrait from './assets/cards/host-portrait.jpg'
+import campsiteSunset from './assets/cards/campsite-sunset.jpg'
+import groupTrip from './assets/cards/group-trip.jpg'
+
 export const site = {
   title: 'Plot Twist',
   brand: 'Shringaarika',
@@ -10,7 +14,13 @@ export const site = {
   hero: {
     sub: 'Something new is coming. Leave your details and you hear about it before anyone else.',
   },
-  cards: ['Setup.', 'Tension.', 'Twist.'],
+  // Hero cards, back to front. The last card is face down at first and flips over.
+  // `position` sets which part of the photo stays visible when it is cropped to the card.
+  cards: [
+    { word: 'Setup.', image: hostPortrait, position: '50% 30%' },
+    { word: 'Tension.', image: campsiteSunset, position: '50% 45%' },
+    { word: 'Twist.', image: groupTrip, position: '50% 50%' },
+  ],
   manifesto:
     'Every good story turns at a moment nobody saw coming. We are building one of those moments, and we would like you there when it happens.',
   register: {

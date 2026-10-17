@@ -3,3 +3,8 @@ dist
 .env
 .env.local
 *.log
+
+# Original photos: large and carry camera/GPS metadata. Web versions live in src/assets/cards.
+/BINQ7373.JPG
+/IMG_6322.HEIC
+/IMG_6485.JPG
