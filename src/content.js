@@ -18,8 +18,8 @@ export const site = {
   // `position` sets which part of the photo stays visible when it is cropped to the card.
   cards: [
     { image: hostPortrait, position: '50% 30%' },
-    { image: campsiteSunset, position: '50% 45%' },
     { image: groupTrip, position: '50% 50%' },
+    { image: campsiteSunset, position: '50% 45%' },
   ],
   manifesto:
     'Every good story turns at a moment nobody saw coming. We are building one of those moments, and we would like you there when it happens.',
