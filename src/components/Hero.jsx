@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { site } from '../content.js'
 import CtaLink from './CtaLink.jsx'
 import CardStack from './CardStack.jsx'
+import EventDetails from './EventDetails.jsx'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -64,11 +65,20 @@ export default function Hero() {
             </span>
           </h1>
 
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.7, ease }}
+            className="mt-6 md:mt-8"
+          >
+            <EventDetails />
+          </motion.div>
+
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75, duration: 0.7, ease }}
-            className="mt-6 max-w-[34ch] text-lg leading-relaxed text-muted md:mt-8 md:text-xl"
+            transition={{ delay: 0.8, duration: 0.7, ease }}
+            className="mt-4 max-w-[34ch] text-lg leading-relaxed text-muted md:mt-5 md:text-xl"
           >
             {site.hero.sub}
           </motion.p>

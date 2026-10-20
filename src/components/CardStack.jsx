@@ -15,8 +15,8 @@ const face = 'absolute inset-0 overflow-hidden rounded-3xl'
 // The stage has a fixed size and is scaled down on smaller screens, centred in a shorter box.
 export default function CardStack({ cards }) {
   return (
-    <div className="relative mx-auto grid h-[15.5rem] w-full max-w-md grid-cols-1 grid-rows-1 place-items-center md:h-[28rem]" aria-hidden>
-      <div className="relative h-[28rem] w-[28rem] shrink-0 scale-[0.55] md:scale-[0.8] lg:scale-100">
+    <div className="relative mx-auto grid h-[13.5rem] w-full max-w-md grid-cols-1 grid-rows-1 place-items-center md:h-[28rem]" aria-hidden>
+      <div className="relative h-[28rem] w-[28rem] shrink-0 scale-[0.48] md:scale-[0.8] lg:scale-100">
         {cards.map(({ image, position }, i) => {
           const { x, y, rotate } = layout[i]
           const isTwist = i === cards.length - 1

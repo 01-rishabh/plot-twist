@@ -11,6 +11,11 @@ export const site = {
   brand: 'Shringaarika',
   fullTitle: 'Plot Twist by Shringaarika',
   cta: 'Save my spot',
+  event: {
+    date: 'Sat, 31 Oct 2026',
+    time: '6 PM to midnight',
+    price: '₹2,000',
+  },
   hero: {
     sub: 'Something new is coming. Leave your details and you hear about it before anyone else.',
   },

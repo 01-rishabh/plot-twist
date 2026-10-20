@@ -5,6 +5,7 @@ import { fields, site } from '../content.js'
 import { toRecord, validate } from '../lib/validate.js'
 import { isDemoMode, submitRecord } from '../lib/submit.js'
 import Field from './Field.jsx'
+import EventDetails from './EventDetails.jsx'
 
 const ease = [0.16, 1, 0.3, 1]
 const emptyValues = () => Object.fromEntries(fields.map((f) => [f.name, f.type === 'checkbox' ? false : '']))
@@ -109,6 +110,9 @@ export default function Register() {
             {site.register.heading}
           </h2>
           <p className="mt-6 max-w-[38ch] text-lg leading-relaxed text-muted">{site.register.body}</p>
+          <div className="mt-8">
+            <EventDetails stacked />
+          </div>
         </motion.div>
 
         <motion.div {...reveal} transition={{ ...reveal.transition, delay: 0.1 }} className="md:col-span-7" style={{ perspective: 1600 }}>
