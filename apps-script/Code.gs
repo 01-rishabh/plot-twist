@@ -1,5 +1,5 @@
 /**
- * Plot Twist: saves landing-page form entries into this Google Sheet.
+ * Saves registration form entries from the website into this Google Sheet.
  *
  * Setup (once): Extensions > Apps Script, replace everything with this file, Save,
  * then Deploy > New deployment > Web app (Execute as: Me, Who has access: Anyone).
@@ -48,7 +48,7 @@ function doPost(e) {
 
 // Opening the web app URL in a browser shows this, which confirms the deployment works.
 function doGet() {
-  return json_({ ok: true, message: 'Plot Twist form endpoint is running.' });
+  return json_({ ok: true, message: 'Registration form endpoint is running.' });
 }
 
 function getSheet_() {
@@ -96,7 +96,7 @@ function notify_(keys, data) {
   var lines = keys.map(function (key) { return key + ': ' + String(data[key] == null ? '' : data[key]); });
   MailApp.sendEmail({
     to: NOTIFY_EMAIL,
-    subject: 'New Plot Twist entry',
+    subject: 'New registration: ' + String(data['Full name'] || '').slice(0, 60),
     body: lines.join('\n') + '\n\nOpen the sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl(),
   });
 }

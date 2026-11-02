@@ -32,7 +32,7 @@ function SuccessCard({ name, email, minHeight, onReset }) {
         <CheckCircleIcon weight="bold" className="size-9" aria-hidden />
       </motion.span>
       <div>
-        <h3 ref={headingRef} tabIndex={-1} className="font-display text-3xl font-bold tracking-tight outline-none md:text-4xl">
+        <h3 ref={headingRef} tabIndex={-1} className="font-display text-3xl font-normal tracking-tight outline-none md:text-4xl">
           {site.success.heading(name)}
         </h3>
         <p className="mt-3 max-w-[40ch] text-lg text-muted">{site.success.body(email)}</p>
@@ -106,7 +106,7 @@ export default function Register() {
     <section id="register" className="scroll-mt-16 py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-12 md:px-8">
         <motion.div {...reveal} className="self-start md:sticky md:top-28 md:col-span-5">
-          <h2 className="font-display text-5xl font-extrabold leading-[0.95] tracking-tight md:text-6xl">
+          <h2 className="font-display text-5xl font-light leading-[1] tracking-tight md:text-6xl">
             {site.register.heading}
           </h2>
           <p className="mt-6 max-w-[38ch] text-lg leading-relaxed text-muted">{site.register.body}</p>

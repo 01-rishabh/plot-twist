@@ -16,7 +16,7 @@ export default function Manifesto() {
 
   return (
     <section ref={ref} className="mx-auto max-w-7xl px-4 py-28 md:px-8 md:py-40">
-      <p className="max-w-[24ch] font-display text-3xl font-semibold leading-[1.15] tracking-tight md:ml-[16%] md:text-5xl lg:text-6xl">
+      <p className="max-w-[24ch] font-display text-3xl font-light leading-[1.2] tracking-tight md:ml-[16%] md:text-5xl lg:text-6xl">
         {reduce
           ? site.manifesto
           : words.map((word, i) => (

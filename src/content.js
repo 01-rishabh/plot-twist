@@ -2,39 +2,96 @@
 // Each field's `label` becomes a column header in the Google Sheet. New fields add
 // new columns automatically; renaming a label starts a new column.
 
-import hostPortrait from './assets/cards/host-portrait.jpg'
-import campsiteSunset from './assets/cards/campsite-sunset.jpg'
-import groupTrip from './assets/cards/group-trip.jpg'
+import aerialInversion from './assets/cards/aerial-inversion.jpg'
+import kneelingStretch from './assets/cards/kneeling-stretch.jpg'
+import chairBackbend from './assets/cards/chair-backbend.jpg'
+import aerialBow from './assets/cards/aerial-bow.jpg'
+
+// Marks an itinerary item as a highlight (shown in the accent colour).
+const highlight = (text) => ({ text, highlight: true })
 
 export const site = {
   title: 'Plot Twist',
   brand: 'Shringaarika',
   fullTitle: 'Plot Twist by Shringaarika',
   cta: 'Save my spot',
-  event: {
-    date: 'Sat, 31 Oct 2026',
-    time: '6 PM to midnight',
-    price: '₹2,000',
+  // Leave dates or price as null to hide them until they are confirmed.
+  trip: {
+    dates: null, // for example 'Fri 20 Nov to Mon 23 Nov 2026'
+    duration: '4 days, 3 nights',
+    place: 'Vyam School of Yoga, Rishikesh',
+    price: null, // for example '₹18,000 per person'
   },
   hero: {
-    sub: 'Something new is coming. Leave your details and you hear about it before anyone else.',
+    sub: 'A yoga retreat by the Ganga: morning asana, rafting, a waterfall trek, Ayurvedic therapies and sound healing.',
   },
-  // Hero photo cards, back to front. The last card is face down at first and flips over.
+  // Hero photo cards, back to front.
   // `position` sets which part of the photo stays visible when it is cropped to the card.
   cards: [
-    { image: hostPortrait, position: '50% 30%' },
-    { image: groupTrip, position: '50% 50%' },
-    { image: campsiteSunset, position: '50% 45%' },
+    { image: aerialInversion, position: '50% 70%' },
+    { image: kneelingStretch, position: '50% 60%' },
+    { image: chairBackbend, position: '50% 80%' },
+    { image: aerialBow, position: '50% 60%' },
   ],
   manifesto:
-    'Every good story turns at a moment nobody saw coming. We are building one of those moments, and we would like you there when it happens.',
+    'Slow mornings on the mat, the Ganga beside you, and nights that end under the stars. Four days to breathe, move and rest.',
+  itinerary: {
+    heading: 'Four days in Rishikesh',
+    sub: 'The plan for your stay at Vyam School of Yoga.',
+    days: [
+      {
+        title: 'Arrival & Relaxation',
+        items: [
+          'Pickup and check-in',
+          'Welcome and refreshments',
+          'Lunch',
+          'Rest and relaxation',
+          highlight('Pottery'),
+          highlight('Kirtan'),
+          'Dinner and overnight stay',
+          highlight('Stargazing through a telescope'),
+        ],
+      },
+      {
+        title: 'Yoga & Adventure',
+        items: [
+          highlight('Morning asana class'),
+          'Breakfast',
+          highlight('Rafting'),
+          highlight('Ganga aarti at Lakshman Jhula'),
+          'Dinner and overnight stay',
+        ],
+      },
+      {
+        title: 'Nature & Healing',
+        items: [
+          highlight('Trekking and waterfall visit'),
+          'Breakfast',
+          highlight('Ayurvedic therapies'),
+          'Lunch',
+          'Rest and relaxation',
+          highlight('Sound healing session'),
+          'Dinner and overnight stay',
+        ],
+      },
+      {
+        title: 'Mindfulness & Departure',
+        items: [
+          highlight('Asana and meditation class'),
+          'Breakfast',
+          highlight('Local market and sightseeing'),
+          'Checkout and departure',
+        ],
+      },
+    ],
+  },
   register: {
-    heading: 'Get on the list',
-    body: 'It takes under a minute. We only use your details to contact you about Plot Twist.',
+    heading: 'Join the retreat',
+    body: 'It takes under a minute. We will get in touch to confirm your place.',
   },
   success: {
     heading: (name) => (name ? `You're on the list, ${name}.` : "You're on the list."),
-    body: (email) => `We will reach out at ${email} as soon as there is news.`,
+    body: (email) => `We will be in touch at ${email} to confirm your place.`,
     again: 'Register someone else',
   },
   errors: {
@@ -98,12 +155,12 @@ export const fields = [
     requiredMessage: 'Please tell us where you are travelling from.',
   },
   {
-    name: 'drink',
-    label: 'Drink preference',
+    name: 'yogaExperience',
+    label: 'Yoga experience',
     type: 'radio',
     span: 'full',
-    options: ['Alcoholic', 'Non-alcoholic'],
-    requiredMessage: 'Please choose a drink preference.',
+    options: ['Beginner', 'Some experience', 'Regular practice'],
+    requiredMessage: 'Please choose your yoga experience.',
   },
   {
     name: 'source',
@@ -119,10 +176,11 @@ export const fields = [
     type: 'textarea',
     span: 'full',
     maxLength: 1000,
+    helper: 'For example health conditions, injuries or food preferences.',
   },
   {
     name: 'consent',
-    label: 'I agree to be contacted about Plot Twist.',
+    label: 'I agree to be contacted about this retreat.',
     sheetLabel: 'Consent',
     type: 'checkbox',
     span: 'full',

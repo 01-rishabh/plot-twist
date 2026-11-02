@@ -74,7 +74,7 @@ export default function Field({ field, value, error, attempt, onChange, inputRef
             return (
               <label
                 key={option}
-                className={`flex h-12 cursor-pointer items-center gap-3 rounded-xl border bg-bg px-4 transition-[border-color,background-color,box-shadow] duration-200 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-accent/30 ${
+                className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border bg-bg px-4 py-2.5 leading-snug transition-[border-color,background-color,box-shadow] duration-200 has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-accent/30 ${
                   checked ? 'border-accent bg-accent/10' : border
                 }`}
               >

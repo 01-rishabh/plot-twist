@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
-/* Radius rule: buttons are full pills, inputs 12px, cards 24px. One accent, used everywhere. */
+/* Rishikesh palette: forest-tinted neutrals with a marigold/saffron accent.
+   Radius rule: buttons and chips are full pills, inputs 12px, cards 24px. One accent, used everywhere. */
 :root {
-  --bg: #f4f4f5;
-  --surface: #fbfbfb;
-  --ink: #18181b;
-  --muted: #52525b;
-  --line: #d4d4d8;
-  --accent: #c2381a;
-  --accent-ink: #fff8f6;
+  --bg: #f2f4ef;
+  --surface: #fafbf8;
+  --ink: #17221b;
+  --muted: #4d5b52;
+  --line: #d3dbd2;
+  --accent: #a85200;
+  --accent-ink: #fffaf2;
   --grain-opacity: 0.05;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f0f11;
-    --surface: #18181b;
-    --ink: #f4f4f5;
-    --muted: #a1a1aa;
-    --line: #2e2e33;
-    --accent: #ff6a45;
-    --accent-ink: #160b08;
+    --bg: #0e1511;
+    --surface: #151e18;
+    --ink: #edf1ea;
+    --muted: #a2b0a6;
+    --line: #26332b;
+    --accent: #f0a23b;
+    --accent-ink: #1a1206;
     --grain-opacity: 0.07;
     color-scheme: dark;
   }
@@ -38,7 +39,7 @@
 }
 
 @theme {
-  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
 }
 

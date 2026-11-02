@@ -4,29 +4,22 @@ import CtaLink from './CtaLink.jsx'
 import CardStack from './CardStack.jsx'
 import EventDetails from './EventDetails.jsx'
 
-const ease = [0.16, 1, 0.3, 1]
+// Slow, soft easing to match the retreat's pace.
+const ease = [0.22, 1, 0.36, 1]
 
-// Letters drop in one by one; the second word then flips once, which is the "twist".
-function KineticWord({ word, startIndex, twist }) {
+// Letters rise into place one by one, like a slow exhale.
+function KineticWord({ word, startIndex }) {
   return (
-    <span className="block whitespace-nowrap" style={{ perspective: 900 }}>
+    <span className="block whitespace-nowrap">
       {[...word].map((char, i) => {
-        const delay = 0.15 + (startIndex + i) * 0.05
+        const delay = 0.2 + (startIndex + i) * 0.07
         return (
           <motion.span
             key={i}
             className="inline-block"
-            style={{ transformOrigin: '50% 70%' }}
-            initial={{ opacity: 0, y: '0.35em', rotateX: -75 }}
-            animate={{ opacity: 1, y: 0, rotateX: twist ? [-75, 0, 0, 360] : 0 }}
-            whileHover={{ y: '-0.06em' }}
-            transition={{
-              opacity: { delay, duration: 0.4 },
-              y: { delay, duration: 0.8, ease },
-              rotateX: twist
-                ? { delay, duration: 2.1, times: [0, 0.3, 0.55, 1], ease: 'easeInOut' }
-                : { delay, duration: 0.8, ease },
-            }}
+            initial={{ opacity: 0, y: '0.25em' }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ opacity: { delay, duration: 1 }, y: { delay, duration: 1.4, ease } }}
           >
             {char}
           </motion.span>
@@ -35,6 +28,12 @@ function KineticWord({ word, startIndex, twist }) {
     </span>
   )
 }
+
+const fadeUp = (delay) => ({
+  initial: { opacity: 0, y: 14 },
+  animate: { opacity: 1, y: 0 },
+  transition: { delay, duration: 1.1, ease },
+})
 
 export default function Hero() {
   const [first, second] = site.title.split(' ')
@@ -45,50 +44,30 @@ export default function Hero() {
         <div className="md:col-span-7">
           <h1 aria-label={site.fullTitle} className="font-display">
             <span aria-hidden>
-              <span className="block text-[clamp(4.5rem,15vw,11.5rem)] font-extrabold leading-[0.88] tracking-[-0.045em]">
+              <span className="block text-[clamp(4.5rem,15vw,11.5rem)] font-light leading-[0.9] tracking-[-0.04em]">
                 <KineticWord word={first} startIndex={0} />
                 {second && (
                   <span className="text-accent">
-                    <KineticWord word={second} startIndex={first.length} twist />
+                    <KineticWord word={second} startIndex={first.length} />
                   </span>
                 )}
               </span>
-              <motion.span
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.65, duration: 0.7, ease }}
-                className="mt-3 block text-2xl font-semibold tracking-tight md:mt-5 md:text-4xl"
-              >
-                <span className="font-normal text-muted">by </span>
-                {site.brand}
+              <motion.span {...fadeUp(0.9)} className="mt-3 block text-2xl tracking-tight md:mt-5 md:text-4xl">
+                <span className="font-light text-muted">by </span>
+                <span className="font-medium">{site.brand}</span>
               </motion.span>
             </span>
           </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.7, ease }}
-            className="mt-6 md:mt-8"
-          >
+          <motion.div {...fadeUp(1)} className="mt-6 md:mt-8">
             <EventDetails />
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.7, ease }}
-            className="mt-4 max-w-[34ch] text-lg leading-relaxed text-muted md:mt-5 md:text-xl"
-          >
+          <motion.p {...fadeUp(1.1)} className="mt-4 max-w-[38ch] text-lg leading-relaxed text-muted md:mt-5 md:text-xl">
             {site.hero.sub}
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.7, ease }}
-            className="mt-8 md:mt-10"
-          >
+          <motion.div {...fadeUp(1.2)} className="mt-8 md:mt-10">
             <CtaLink />
           </motion.div>
         </div>
