@@ -4,11 +4,11 @@ Landing page with a sign-up form. Entries are saved to a Google Sheet, which is 
 
 - Frontend: React + Vite + Tailwind CSS v4 + Motion (animations)
 - Storage: Google Sheets, written by a small Google Apps Script web app
-- Hosting: Netlify (free tier)
+- Hosting: GitHub Pages (live at https://01-rishabh.github.io/plot-twist/); Netlify also works
 - Cost: free
 
 ```
-Visitor fills form  ->  Netlify site (React)  ->  Apps Script web app  ->  Google Sheet  <-  Admin
+Visitor fills form  ->  GitHub Pages site (React)  ->  Apps Script web app  ->  Google Sheet  <-  Admin
 ```
 
 ## 1. Run it locally
@@ -40,7 +40,17 @@ Opens on http://localhost:5180. Without a sheet URL the form runs in demo mode: 
 
 **Changing the script later:** use **Deploy > Manage deployments > pencil icon > Version: New version > Deploy**. This keeps the same URL. "New deployment" creates a new URL that the site does not know about.
 
-## 3. Deploy to Netlify
+## 3. Deploy
+
+### GitHub Pages (current)
+
+[.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) builds and publishes the site on every push to `master`. Progress shows under the repo's **Actions** tab.
+
+- The sheet URL comes from the repository variable `VITE_SHEET_URL`: **Settings > Secrets and variables > Actions > Variables**. After changing it, re-run the latest workflow or push again.
+- Pages is set to deploy from GitHub Actions: **Settings > Pages > Source: GitHub Actions**.
+- The workflow sets `BASE_PATH` to `/<repo-name>/`, so renaming the repo changes the address and still works.
+
+### Netlify
 
 `netlify.toml` already sets the build command (`npm run build`) and output folder (`dist`).
 
