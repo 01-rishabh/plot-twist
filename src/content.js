@@ -19,7 +19,7 @@ export const site = {
   trip: {
     dates: null, // for example 'Fri 20 Nov to Mon 23 Nov 2026'
     duration: '4 days, 3 nights',
-    place: 'Vyam School of Yoga, Rishikesh',
+    place: 'Rishikesh',
     price: null, // for example '₹18,000 per person'
   },
   hero: {
@@ -37,7 +37,7 @@ export const site = {
     'Slow mornings on the mat, the Ganga beside you, and nights that end under the stars. Four days to breathe, move and rest.',
   itinerary: {
     heading: 'Four days in Rishikesh',
-    sub: 'The plan for your stay at Vyam School of Yoga.',
+    sub: 'The plan for your stay in Rishikesh.',
     days: [
       {
         title: 'Arrival & Relaxation',
