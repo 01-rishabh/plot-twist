@@ -35,6 +35,10 @@ export const site = {
   ],
   manifesto:
     'Slow mornings on the mat, the Ganga beside you, and nights that end under the stars. Four days to breathe, move and rest.',
+  breathe: {
+    heading: 'Pause for a breath',
+    sub: 'This is the pace of the retreat. Follow the circle for a minute.',
+  },
   itinerary: {
     heading: 'Four days in Rishikesh',
     sub: 'The plan for your stay in Rishikesh.',

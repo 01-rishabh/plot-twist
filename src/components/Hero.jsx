@@ -3,6 +3,7 @@ import { site } from '../content.js'
 import CtaLink from './CtaLink.jsx'
 import CardStack from './CardStack.jsx'
 import EventDetails from './EventDetails.jsx'
+import Petals from './Petals.jsx'
 
 // Slow, soft easing to match the retreat's pace.
 const ease = [0.22, 1, 0.36, 1]
@@ -40,7 +41,8 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-[100dvh] items-end overflow-hidden pt-24 pb-14 md:pb-20">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-end gap-6 px-4 md:grid-cols-12 md:gap-12 md:px-8">
+      <Petals />
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-end gap-6 px-4 md:grid-cols-12 md:gap-12 md:px-8">
         <div className="md:col-span-7">
           <h1 aria-label={site.fullTitle} className="font-display">
             <span aria-hidden>

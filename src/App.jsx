@@ -2,6 +2,7 @@ import { MotionConfig } from 'motion/react'
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import Manifesto from './components/Manifesto.jsx'
+import Breathe from './components/Breathe.jsx'
 import Itinerary from './components/Itinerary.jsx'
 import Register from './components/Register.jsx'
 import Footer from './components/Footer.jsx'
@@ -14,6 +15,7 @@ export default function App() {
       <main>
         <Hero />
         <Manifesto />
+        <Breathe />
         <Itinerary />
         <Register />
       </main>

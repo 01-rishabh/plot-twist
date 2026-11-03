@@ -1,9 +1,12 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react'
-import { SparkleIcon } from '@phosphor-icons/react'
+import { FlowerLotusIcon, LeafIcon, MoonStarsIcon, SparkleIcon, WavesIcon } from '@phosphor-icons/react'
 import { site } from '../content.js'
 
 const ease = [0.22, 1, 0.36, 1]
+
+// One icon per day: arrival and stars, river, nature, then meditation.
+const DAY_ICONS = [MoonStarsIcon, WavesIcon, LeafIcon, FlowerLotusIcon]
 
 const dayVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -54,9 +57,16 @@ export default function Itinerary() {
               viewport={{ once: true, amount: 0.3 }}
               className="relative grid grid-cols-[24px_minmax(0,1fr)] gap-x-5 pb-14 last:pb-0 md:grid-cols-[24px_minmax(0,4fr)_minmax(0,8fr)] md:gap-x-10 md:pb-20"
             >
-              <span aria-hidden className="relative mt-1 grid size-6 place-items-center rounded-full border-2 border-accent bg-bg">
-                <span className="size-2 rounded-full bg-accent" />
-              </span>
+              <motion.span
+                aria-hidden
+                variants={{ hidden: { scale: 0.6, rotate: -30 }, show: { scale: 1, rotate: 0, transition: { duration: 1.2, ease } } }}
+                className="relative mt-0.5 grid size-6 place-items-center rounded-full bg-bg text-accent"
+              >
+                {(() => {
+                  const Icon = DAY_ICONS[i % DAY_ICONS.length]
+                  return <Icon weight="regular" className="size-6" />
+                })()}
+              </motion.span>
 
               <div>
                 <p className="text-sm font-medium text-accent">Day {i + 1}</p>

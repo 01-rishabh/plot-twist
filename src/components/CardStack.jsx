@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import Mandala from './Mandala.jsx'
 
 // Fans any number of cards out around the centre and cascades them down to the right,
 // so a strip of every photo stays visible.
@@ -21,6 +22,15 @@ export default function CardStack({ cards }) {
   return (
     <div className="relative mx-auto grid h-[13.5rem] w-full max-w-md grid-cols-1 grid-rows-1 place-items-center md:h-[28rem] xl:h-[30rem]" aria-hidden>
       <div className="relative h-[30rem] w-[34rem] shrink-0 scale-[0.44] md:scale-[0.7] lg:scale-[0.85] xl:scale-100">
+        <motion.div
+          className="absolute inset-0 m-auto size-[44rem] text-accent opacity-30"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 0.3, scale: 1 }}
+          transition={{ duration: 2.4, ease }}
+        >
+          <Mandala className="size-full" />
+        </motion.div>
+
         {/* One breath every 8 seconds; MotionConfig turns it off for reduced-motion visitors. */}
         <motion.div
           className="absolute inset-0 m-auto size-96 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--accent)_30%,transparent)_0%,transparent_68%)]"
